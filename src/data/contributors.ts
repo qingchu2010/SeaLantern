@@ -53,11 +53,13 @@ export const contributors: Contributor[] = [
     name: "Little_100",
     role: "打杂",
     avatar: "https://minotar.net/avatar/Little100/64",
+    url : "https://gitee.com/little_100",
   },
   {
     name: "MinecraftYJQ",
     role: "小修小改罢",
     avatar: "https://minotar.net/avatar/MinecraftYJQ_/64",
+    url: "https://gitee.com/minecraftyjq",
   },
 
   

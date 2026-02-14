@@ -141,7 +141,23 @@ console.log('[AboutView] 脚本执行完成');
           :key="c.name"
           class="contributor-card glass-card"
         >
-          <img :src="c.avatar" :alt="c.name" class="contributor-avatar" />
+          <!-- 如果存在 url，则用 a 标签包裹头像；否则只显示图片 -->
+          <a 
+            v-if="c.url" 
+            :href="c.url" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="contributor-link"
+          >
+            <img :src="c.avatar" :alt="c.name" class="contributor-avatar" />
+          </a>
+          <img 
+            v-else 
+            :src="c.avatar" 
+            :alt="c.name" 
+            class="contributor-avatar" 
+          />
+          
           <div class="contributor-info">
             <span class="contributor-name">{{ c.name }}</span>
             <span class="contributor-role">{{ c.role }}</span>
@@ -341,6 +357,9 @@ console.log('[AboutView] 脚本执行完成');
     <div class="links-section">
       <SLButton variant="primary" size="lg" @click="openLink('https://gitee.com/fps_z/SeaLantern')">
         Gitee 仓库
+      </SLButton>
+      <SLButton variant="primary" size="lg" @click="openLink('https://github.com/FPSZ/SeaLantern')">
+        Github 仓库
       </SLButton>
       <SLButton variant="secondary" size="lg" @click="openLink('https://space.bilibili.com/3706927622130406?spm_id_from=333.1387.0.0')">
         B站主页
@@ -803,4 +822,21 @@ console.log('[AboutView] 脚本执行完成');
   .contribute-ways { grid-template-columns: 1fr; }
   .contributor-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
+
+.contributor-link {
+  display: inline-block;
+  cursor: pointer;
+  transition: all var(--sl-transition-normal);
+  border-radius: var(--sl-radius-md);
+  line-height: 0;  
+}
+
+.contributor-link:hover {
+  transform: translateY(-4px);
+}
+
+.contributor-link:hover .contributor-avatar {
+  box-shadow: var(--sl-shadow-lg);
+}
+
 </style>
